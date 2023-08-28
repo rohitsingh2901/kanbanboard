@@ -20,7 +20,7 @@ const Cards = new mongoose.Schema({
   const Card = mongoose.model('Card', Cards);
   
   // Create a new item
-  app.post('/cards', async (req, res) => {
+  app.post('/create-card', async (req, res) => {
     try {
       const { title, description } = req.body;
       const newCard = new Card({ title, description });
@@ -44,6 +44,27 @@ const Cards = new mongoose.Schema({
       const { id } = req.params;
       await Card.findByIdAndDelete(id);
       res.status(200).json({ message: 'Card deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ error: 'An error occurred' });
+    }
+  });
+
+  app.put('/cards/edit/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { title, description } = req.body;
+  
+      const updatedCard = await Card.findByIdAndUpdate(
+        id,
+        { title, description },
+        { new: true }
+      );
+  
+      if (!updatedCard) {
+        return res.status(404).json({ error: 'Card not found' });
+      }
+  
+      res.status(200).json(updatedCard);
     } catch (error) {
       res.status(500).json({ error: 'An error occurred' });
     }
