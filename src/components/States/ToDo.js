@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const ToDo = () => {
   const [Cards, setCards] = useState([]);
@@ -9,7 +9,7 @@ const ToDo = () => {
   const [i, seti] = useState(null);
 
 
-  useEffect(() => {
+  useEffect   (() => {
     fetchCards();
   }, []);
 
@@ -26,9 +26,10 @@ const ToDo = () => {
 
   
   const deleteCard = async (index) => {
+    console.log(index)
     try {
       const response = await fetch(
-        `http://localhost:5000/cards/${Cards[index]._id}`,
+        `http://localhost:5000/todo-cards/${Cards[index]._id}`,
         {
           method: "DELETE",
         }
@@ -45,7 +46,7 @@ const ToDo = () => {
   const editCard = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/cards/edit/${Cards[i]._id}`,
+        `http://localhost:5000/todocards/edit/${Cards[i]._id}`,
         {
           method: "PUT",
           headers: {
@@ -81,7 +82,7 @@ const ToDo = () => {
     if(title!=="" && description!==""){
     event.preventDefault()
     try {
-      const response = await fetch('http://localhost:5000/create-card', {
+      const response = await fetch('http://localhost:5000/create-todocard', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -93,6 +94,8 @@ const ToDo = () => {
       fetchCards()
       document.getElementById('title').value=""
       document.getElementById('desc').value=""
+      setTitle("")
+      setDescription("")
     } catch (error) {
       console.error('Error:', error);
     }
@@ -263,7 +266,7 @@ const ToDo = () => {
                   >
                     Cancel
                   </button>
-                  <button type="submit" onClick={(event)=>{createCard(event,"doing")}} {...(title && description ? { "data-dismiss": "modal" } : {})} className="btn btn-primary">
+                  <button type="submit" onClick={(event)=>{createCard(event,"todo")}} {...(title && description ? { "data-dismiss": "modal" } : {})} className="btn btn-primary">
                     Add Card
                   </button>
                 </div>
