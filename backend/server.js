@@ -15,6 +15,7 @@ const port = 5000
 const Cards = new mongoose.Schema({
     title: String,
     description: String,
+    column: String,
   });
   
   const Card = mongoose.model('Card', Cards);
@@ -22,8 +23,8 @@ const Cards = new mongoose.Schema({
   // Create a new item
   app.post('/create-card', async (req, res) => {
     try {
-      const { title, description } = req.body;
-      const newCard = new Card({ title, description });
+      const { title, description, column } = req.body;
+      const newCard = new Card({ title, description ,column });
       await newCard.save();
       res.status(201).json(newCard);
     } catch (error) {
@@ -31,14 +32,17 @@ const Cards = new mongoose.Schema({
     }
   });
 
-  app.get('/cards', async (req, res) => {
+  app.get('/todo-cards', async (req, res) => {
     try {
-      const cards = await Card.find();
-      res.status(200).json(cards);
+      const todoCards = await Card.find({ column: 'todo' });
+      res.status(200).json(todoCards);
     } catch (error) {
       res.status(500).json({ error: 'An error occurred' });
     }
   });
+  
+
+  
   app.delete('/cards/:id', async (req, res) => {
     try {
       const { id } = req.params;
