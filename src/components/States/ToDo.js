@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const ToDo = () => {
+const ToDo = ({setUpdateDoing, updateToDo }) => {
   const [Cards, setCards] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -11,7 +11,7 @@ const ToDo = () => {
 
   useEffect   (() => {
     fetchCards();
-  }, []);
+  }, [updateToDo]);
 
   const fetchCards = async () => {
     try {
@@ -102,6 +102,25 @@ const ToDo = () => {
   }
   }
 
+  const moveCardToDoing = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/move-to-doing/${id}`, {
+        method: 'PUT',
+      });
+  
+      if (response.status === 200) {
+        console.log('Card moved to "Doing" successfully');
+        fetchCards()
+        setUpdateDoing(prev => !prev);
+      } else if (response.status === 404) {
+        console.error('Card not found');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+
   return (
     <>
     <h1 className="text-center font-extrabold">To Do</h1>
@@ -125,7 +144,7 @@ const ToDo = () => {
             data-target="#exampleModalCenter2" onClick={()=>{seti(i) 
             setuTitle(Cards[i].title)
             setuDescription(Cards[i].description)}} className="fa-solid fa-pen-to-square mx-2 cursor-pointer"></i>
-                    <i className="fa fa-arrow-right cursor-pointer"></i>
+                    <i onClick={()=>{moveCardToDoing(c._id)}} className="fa fa-arrow-right cursor-pointer"></i>
                   </div>
                 </div>
               </div>

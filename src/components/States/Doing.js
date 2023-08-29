@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const Doing = () => {
+const Doing = ({updateDoing, setUpdateToDo}) => {
   const [Cards, setCards] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -11,7 +11,7 @@ const Doing = () => {
 
   useEffect   (() => {
     fetchCards();
-  }, []);
+  }, [updateDoing]);
 
   const fetchCards = async () => {
     try {
@@ -102,9 +102,27 @@ const Doing = () => {
   }
   }
 
+  const moveCardToDo = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/move-to-todo/${id}`, {
+        method: 'PUT',
+      });
+  
+      if (response.status === 200) {
+        console.log('Card moved to "Todo" successfully');
+        fetchCards()
+        setUpdateToDo(prev => !prev);
+      } else if (response.status === 404) {
+        console.error('Card not found');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
     <>
-    <h1 className="text-center font-extrabold">To Do</h1>
+    <h1 className="text-center font-extrabold">Doing</h1>
           {Cards.map((c, i) => (
             <div key={i} className="flex justify-center">
               <div
@@ -117,7 +135,7 @@ const Doing = () => {
                 <div className="card-body">
                   <p className="card-text">{c.description}</p>
                   <div className="flex justify-end">
-                  <i className="fa fa-arrow-left mx-2 cursor-pointer"></i>
+                  <i onClick={()=>{moveCardToDo(c._id)}} className="fa fa-arrow-left mx-2 cursor-pointer"></i>
                     <i
                       onClick={() => deleteCard(i)}
                       className="fa-solid fa-trash mx-2 cursor-pointer"

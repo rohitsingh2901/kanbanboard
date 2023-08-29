@@ -104,7 +104,7 @@ const Done = () => {
 
   return (
     <>
-    <h1 className="text-center font-extrabold">To Do</h1>
+    <h1 className="text-center font-extrabold">Done</h1>
           {Cards.map((c, i) => (
             <div key={i} className="flex justify-center">
               <div

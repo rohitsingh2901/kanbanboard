@@ -214,6 +214,69 @@ const Cards = new mongoose.Schema({
     }
   });
 
+
+  //Move 
+
+  app.put('/move-to-doing/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+  
+      // Find the card in TODOCards collection
+      const cardToMove = await TODOCards.findById(id);
+  
+      if (!cardToMove) {
+        return res.status(404).json({ error: 'Card not found' });
+      }
+  
+      // Create a new card in DoingCards collection
+      const newDoingCard = new DoingCards({
+        title: cardToMove.title,
+        description: cardToMove.description,
+        column: 'doing',
+      });
+  
+      await newDoingCard.save();
+  
+      // Delete the card from TODOCards collection
+      await TODOCards.findByIdAndDelete(id);
+  
+      res.status(200).json(newDoingCard);
+    } catch (error) {
+      res.status(500).json({ error: 'An error occurred' });
+    }
+  });
+
+  app.put('/move-to-todo/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+  
+      // Find the card in TODOCards collection
+      const cardToMove = await DoingCards.findById(id);
+  
+      if (!cardToMove) {
+        return res.status(404).json({ error: 'Card not found' });
+      }
+  
+      // Create a new card in TODO collection
+      const newDoingCard = new TODOCards({
+        title: cardToMove.title,
+        description: cardToMove.description,
+        column: 'doing',
+      });
+  
+      await newDoingCard.save();
+  
+      // Delete the card from TODOCards collection
+      await DoingCards.findByIdAndDelete(id);
+  
+      res.status(200).json(newDoingCard);
+    } catch (error) {
+      res.status(500).json({ error: 'An error occurred' });
+    }
+  });
+  
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
