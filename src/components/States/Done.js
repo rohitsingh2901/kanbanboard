@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const Done = () => {
+const Done = ({updateDone, setUpdateDoing}) => {
   const [Cards, setCards] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -11,7 +11,7 @@ const Done = () => {
 
   useEffect   (() => {
     fetchCards();
-  }, []);
+  }, [updateDone]);
 
   const fetchCards = async () => {
     try {
@@ -101,6 +101,24 @@ const Done = () => {
     }
   }
   }
+  const moveCardToDoing = async (id) => {
+    console.log(id)
+    try {
+      const response = await fetch(`http://localhost:5000/move-to-doing-from-done/${id}`, {
+        method: 'PUT',
+      });
+  
+      if (response.status === 200) {
+        console.log('Card moved to "Done" successfully');
+        fetchCards()
+        setUpdateDoing(prev => !prev);
+      } else if (response.status === 404) {
+        console.error('Card not found');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
     <>
@@ -109,7 +127,7 @@ const Done = () => {
             <div key={i} className="flex justify-center">
               <div
                 className="card text-black border-danger mb-3"
-                style={{ maxWidth: "22rem", minWidth: "22rem" }}
+                style={{ maxWidth: "22vw", minWidth: "22vw" }}
               >
                 <div className="card-header font-bold text-center">
                   {c.title}
@@ -117,6 +135,7 @@ const Done = () => {
                 <div className="card-body">
                   <p className="card-text">{c.description}</p>
                   <div className="flex justify-end">
+                    <i onClick={()=>{moveCardToDoing(c._id)}} className="fa fa-arrow-left mx-2 cursor-pointer"></i>
                     <i
                       onClick={() => deleteCard(i)}
                       className="fa-solid fa-trash mx-2 cursor-pointer"
@@ -125,7 +144,6 @@ const Done = () => {
             data-target="#exampleModalCenterdoneUpdate" onClick={()=>{seti(i) 
             setuTitle(Cards[i].title)
             setuDescription(Cards[i].description)}} className="fa-solid fa-pen-to-square mx-2 cursor-pointer"></i>
-                    <i className="fa fa-arrow-left cursor-pointer"></i>
                   </div>
                 </div>
               </div>

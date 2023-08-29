@@ -128,7 +128,7 @@ const ToDo = ({setUpdateDoing, updateToDo }) => {
             <div key={i} className="flex justify-center">
               <div
                 className="card text-black border-danger mb-3"
-                style={{ maxWidth: "22rem", minWidth: "22rem" }}
+                style={{ maxWidth: "22vw", minWidth: "22vw" }}
               >
                 <div className="card-header font-bold text-center">
                   {c.title}

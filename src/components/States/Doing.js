@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const Doing = ({updateDoing, setUpdateToDo}) => {
+const Doing = ({updateDoing, setUpdateToDo, setUpdateDone}) => {
   const [Cards, setCards] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -11,7 +11,7 @@ const Doing = ({updateDoing, setUpdateToDo}) => {
 
   useEffect   (() => {
     fetchCards();
-  }, [updateDoing]);
+  }, [updateDoing,]);
 
   const fetchCards = async () => {
     try {
@@ -112,6 +112,24 @@ const Doing = ({updateDoing, setUpdateToDo}) => {
         console.log('Card moved to "Todo" successfully');
         fetchCards()
         setUpdateToDo(prev => !prev);
+        setUpdateDone(prev=>!prev);
+      } else if (response.status === 404) {
+        console.error('Card not found');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  const moveCardToDone = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/move-to-done/${id}`, {
+        method: 'PUT',
+      });
+  
+      if (response.status === 200) {
+        console.log('Card moved to "Todo" successfully');
+        fetchCards()
+        setUpdateDone(prev=>!prev);
       } else if (response.status === 404) {
         console.error('Card not found');
       }
@@ -127,7 +145,7 @@ const Doing = ({updateDoing, setUpdateToDo}) => {
             <div key={i} className="flex justify-center">
               <div
                 className="card text-black border-danger mb-3"
-                style={{ maxWidth: "22rem", minWidth: "22rem" }}
+                style={{ maxWidth: "22vw", minWidth: "22vw" }}
               >
                 <div className="card-header font-bold text-center">
                   {c.title}
@@ -144,7 +162,7 @@ const Doing = ({updateDoing, setUpdateToDo}) => {
             data-target="#exampleModalCenterDoingUpdate" onClick={()=>{seti(i) 
             setuTitle(Cards[i].title)
             setuDescription(Cards[i].description)}} className="fa-solid fa-pen-to-square mx-2 cursor-pointer"></i>
-                    <i className="fa fa-arrow-right cursor-pointer"></i>
+                    <i onClick={()=>{moveCardToDone(c._id)}} className="fa fa-arrow-right cursor-pointer"></i>
                   </div>
                 </div>
               </div>

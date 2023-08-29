@@ -6,18 +6,19 @@ import Done from "./States/Done";
 const Home = () => {
   const [updateDoing, setUpdateDoing] = useState(false);
   const [updateToDo, setUpdateToDo] = useState(false);
+  const [updateDone, setUpdateDone] = useState(false);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-4 border-solid border-2 border-black">
+    <div className="">
+      <div className="flex justify-evenly">
+        <div className="col-3 border-solid border-2 border-black">
           <ToDo setUpdateDoing={setUpdateDoing} updateToDo={updateToDo} />
         </div>
-        <div className="col-4 border-solid border-2 border-black">
-          <Doing updateDoing={updateDoing} setUpdateToDo={setUpdateToDo}/>
+        <div className="col-3 border-solid border-2 border-black">
+          <Doing updateDoing={updateDoing} setUpdateDone={setUpdateDone} setUpdateToDo={setUpdateToDo}/>
         </div>
-        <div className="col-4 border-solid border-2 border-black">
-          <Done />
+        <div className="col-3 border-solid border-2 border-black">
+          <Done updateDone={updateDone} setUpdateDoing={setUpdateDoing} />
         </div>
       </div>
     </div>
