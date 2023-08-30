@@ -2,8 +2,8 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <nav class="text-black text-5xl text-center font-extrabold hover:text-gray-800">
-      Kanban Board
+    <nav className="text-black text-5xl text-center font-extrabold hover:text-gray-800">
+      <span className='hover: cursor-pointer'>Kanban Board</span>
     </nav>
   )
 }

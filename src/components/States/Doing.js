@@ -8,23 +8,37 @@ const Doing = ({updateDoing, setUpdateToDo, setUpdateDone}) => {
   const [udescription, setuDescription] = useState("");
   const [i, seti] = useState(null);
   const [di, setDi] = useState(null);
+  const [check, setCheck] = useState(false);
+  const [direction, setDirection] = useState('right');
+  const [direction2, setDirection2] = useState('left');
 
 
   useEffect   (() => {
     fetchCards();
   }, [updateDoing,]);
+  useEffect(() => {
+    const handleResize = () => {
+      setDirection(window.innerWidth <= 750 ? 'down' : 'right');
+      setDirection2(window.innerWidth <= 750 ? 'up' : 'left');
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const fetchCards = async () => {
     try {
       const response = await fetch("http://localhost:5000/doing-cards");
       const data = await response.json();
+      setCheck(true)
       setCards(data);
     } catch (error) {
       console.error("Error:", error);
     }
   };
-
-
   
   const deleteCard = async () => {
     try {
@@ -141,11 +155,11 @@ const Doing = ({updateDoing, setUpdateToDo, setUpdateDone}) => {
   return (
     <>
     <h1 className="text-center font-extrabold text-yellow-800">Doing</h1>
-          {Cards.map((c, i) => (
+          {check ? (Cards.map((c, i) => (
             <div key={i} className="flex justify-center">
               <div
                 className="card text-black border-danger mb-3"
-                style={{ maxWidth: "22vw", minWidth: "22vw",background:"#F0E68C" }}
+                style={{  width: "80%",background:"#F0E68C" }}
               >
                 <div className="card-header font-bold text-center">
                   {c.title}
@@ -153,7 +167,7 @@ const Doing = ({updateDoing, setUpdateToDo, setUpdateDone}) => {
                 <div className="card-body">
                   <p className="card-text">{c.description}</p>
                   <div className="flex justify-end">
-                  <i title='Move to ToDo' onClick={()=>{moveCardToDo(c._id)}} className="fa fa-arrow-left mx-2 cursor-pointer"></i>
+                  <i title='Move to ToDo' onClick={()=>{moveCardToDo(c._id)}} className={`fa fa-arrow-${direction2} mx-2 cursor-pointer`}></i>
                     <i
                     title='Delete Card'
                       onClick={() => setDi(i)}
@@ -164,32 +178,35 @@ const Doing = ({updateDoing, setUpdateToDo, setUpdateDone}) => {
             data-target="#exampleModalCenterDoingUpdate" onClick={()=>{seti(i) 
             setuTitle(Cards[i].title)
             setuDescription(Cards[i].description)}} className="fa-solid fa-pen-to-square mx-2 cursor-pointer"></i>
-                    <i title='Move to done' onClick={()=>{moveCardToDone(c._id)}} className="fa fa-arrow-right cursor-pointer"></i>
+                    <i title='Move to done' onClick={()=>{moveCardToDone(c._id)}} className={`fa fa-arrow-${direction} cursor-pointer`}></i>
                   </div>
                 </div>
               </div>
             </div>
-          ))}
+          ))):(<div className="flex flex-col justify-center items-center my-4">
+          <div className="loader "></div>
+          <h5>Please Wait</h5>
+          </div>)}
           <h6
             title='Add new card'
             data-toggle="modal"
             data-target="#exampleModalCenterDoing"
-            className="cursor-pointer"
+            className="cursor-pointer text-center"
           >
             Create Card <i className="fa-solid fa-plus"></i>
           </h6>
-          <div class="modal fade" id="exampleModalCenterDeleteCheck2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title font-bold" id="exampleModalLongTitle">Are you sure you want to delete this card</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <div className="modal fade" id="exampleModalCenterDeleteCheck2" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div className="modal-dialog modal-dialog-centered" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title font-bold" id="exampleModalLongTitle">Are you sure you want to delete this card</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button onClick={deleteCard} type="button" data-dismiss="modal" class="btn btn-danger">Delete</button>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button onClick={deleteCard} type="button" data-dismiss="modal" className="btn btn-danger">Delete</button>
       </div>
     </div>
   </div>

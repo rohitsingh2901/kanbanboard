@@ -12,11 +12,53 @@ code {
     monospace;
 }
 
-nav {
-  background-image: linear-gradient(to right,rgb(243, 119, 119),rgb(155, 246, 155) );
-  height: 5vw;
-  border-radius: 0% 0% 25% 25%;
+@media (max-width: 2000px) {
+  nav {
+    background-image: linear-gradient(to right,rgb(243, 119, 119),rgb(155, 246, 155) );
+    height: 5vw;
+    border-radius: 0% 0% 25% 25%;
+  }
 }
+
+@media (max-width: 1300px) {
+  nav {
+    background-image: linear-gradient(to right,rgb(243, 119, 119),rgb(155, 246, 155) );
+    height: 7vw;
+    border-radius: 0% 0% 25% 25%;
+  }
+}
+@media (max-width: 950px) {
+  nav {
+    background-image: linear-gradient(to right,rgb(243, 119, 119),rgb(155, 246, 155) );
+    height: 9vw;
+    border-radius: 0% 0% 25% 25%;
+  }
+}
+@media (max-width: 730px) {
+  nav {
+    background-image: linear-gradient(to right,rgb(243, 119, 119),rgb(155, 246, 155) );
+    height: 11vw;
+    border-radius: 0% 0% 25% 25%;
+  }
+}
+@media (max-width: 560px) {
+  nav {
+    background-image: linear-gradient(to right,rgb(243, 119, 119),rgb(155, 246, 155) );
+    height: 15vw;
+    border-radius: 0% 0% 25% 25%;
+  }
+}
+@media (max-width: 440px) {
+  nav {
+    background-image: linear-gradient(to right,rgb(243, 119, 119),rgb(155, 246, 155) );
+    height: 20vw;
+    border-radius: 0% 0% 25% 25%;
+  }
+}
+
+
+
+
 html{
   background-color: rgb(237, 255, 255);
 }
@@ -26,4 +68,46 @@ html{
 }
 #app{
   background-color: rgb(237, 255, 255);
+}
+.loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 4vw;
+  height: 4vw;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+@media (max-width: 3000px) {
+  .roww{
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .column{
+    display:  flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 30vw;
+  }
+}
+@media (max-width: 750px) {
+  .roww{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+  }
+  .column{
+    display:  flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 90vw;
+  }
 }

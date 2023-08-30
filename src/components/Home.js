@@ -10,14 +10,14 @@ const Home = () => {
 
   return (
     <div id="home" className="my-12">
-      <div className="flex justify-evenly">
-        <div className="col-3 border-solid border-2 border-black">
+      <div className="roww">
+        <div className="column my-2 border-solid border-2 border-black">
           <ToDo setUpdateDoing={setUpdateDoing} updateToDo={updateToDo} />
         </div>
-        <div className="col-3 border-solid border-2 border-black">
+        <div className="column my-2 border-solid border-2 border-black">
           <Doing updateDoing={updateDoing} setUpdateDone={setUpdateDone} setUpdateToDo={setUpdateToDo}/>
         </div>
-        <div className="col-3 border-solid border-2 border-black">
+        <div className="column my-2 border-solid border-2 border-black">
           <Done updateDone={updateDone} setUpdateDoing={setUpdateDoing} />
         </div>
       </div>

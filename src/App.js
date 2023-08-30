@@ -8,7 +8,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route   path="/" element={<Home/>}/>
+          <Route   path="/kanbanboard" element={<Home/>}/>
         </Routes>
       </Router>
     </div>
