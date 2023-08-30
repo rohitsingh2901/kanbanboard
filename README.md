@@ -1,70 +1,97 @@
-# Getting Started with Create React App
+# Kanban Board Task Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Kanban Board Task Management App! This application allows you to seamlessly manage tasks across different stages of completion, inspired by platforms like Trello. You can easily organize your tasks into To Do, Doing, and Done categories, edit task details, and even drag and drop tasks between categories. The application is designed to be responsive, ensuring a consistent experience across both desktop and mobile devices.
 
-## Available Scripts
+## Live Website
 
-In the project directory, you can run:
+Check out the live version of the Kanban Board Task Management App [here](https://rohitsingh2901.github.io/kanbanboard/).
 
-### `npm start`
+## Front-end Requirements
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1. Homepage
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The homepage displays all tasks, conveniently organized into three status groups: To Do, Doing, and Done.
 
-### `npm test`
+### 2. Task Card
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Each task is showcased on a card, providing a clear view of the task title and description.
 
-### `npm run build`
+### 3. Add Task
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Easily create a new task using the integrated form. The form prompts users for the title and description of the task.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 4. Edit Task
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You can edit the title and description of an existing task at any time.
 
-### `npm run eject`
+### 5. Delete Task
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Tasks can be permanently deleted from the application, offering a seamless removal process.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 6. Task Status
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Empower yourself to effortlessly manage tasks by dragging and dropping them between the To Do, Doing, and Done categories.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 7. Responsive Design
 
-## Learn More
+The Kanban Board app is designed with responsiveness in mind, ensuring that it functions perfectly and maintains visual coherence on mobile devices.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Back-end Requirements
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 1. API Endpoints
 
-### Code Splitting
+The application's back-end provides API endpoints to support Create, Read, Update, and Delete (CRUD) operations for tasks.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 2. Database Storage
 
-### Analyzing the Bundle Size
+Tasks are stored in a database to ensure data persistence and seamless retrieval.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Live Database View
 
-### Making a Progressive Web App
+You can explore a read-only view of the MongoDB Compass database containing the task information by using the following link:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+mongodb+srv://viewonly:GLcEuN9ixgz3bnUI@kanbanboard.2v3awwr.mongodb.net/
 
-### Advanced Configuration
+## Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<!-- Screenshot (4) -->
+<img src="https://github.com/rohitsingh2901/kanbanboard/assets/80673974/76f6366c-8056-4bd2-a323-a87cdad54b9a" width="400">
 
-### Deployment
+<!-- Screenshot (5) -->
+<img src="https://github.com/rohitsingh2901/kanbanboard/assets/80673974/102246a0-42b5-4aad-92f0-e7c6de386b95" width="400">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<!-- Screenshot (6) -->
+<img src="https://github.com/rohitsingh2901/kanbanboard/assets/80673974/60a0540b-07a5-4b1b-9fa1-e84b25a6feda" width="400">
 
-### `npm run build` fails to minify
+<!-- Screenshot (7) -->
+<img src="https://github.com/rohitsingh2901/kanbanboard/assets/80673974/812d7e12-321e-4a47-96ac-7de9df2db6fc" width="400">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- Screenshot (8) -->
+<img src="https://github.com/rohitsingh2901/kanbanboard/assets/80673974/fa91c517-951e-4d14-a1ce-94c77ed48770" width="400">
+
+<!-- Screenshot (9) -->
+<img src="https://github.com/rohitsingh2901/kanbanboard/assets/80673974/be7c0818-17f9-4ec0-beba-628bef07ef5a" width="400">
+
+<!-- Screenshot (10) -->
+<img src="https://github.com/rohitsingh2901/kanbanboard/assets/80673974/490f2fa0-1b38-4b61-9fb1-87bfa1631c01" width="400">
+
+<!-- Screenshot (11) -->
+<img src="https://github.com/rohitsingh2901/kanbanboard/assets/80673974/4df7dcca-c8b3-45a0-9f5c-5c1df0208f28" width="400">
+
+<!-- Screenshot (12) -->
+<img src="https://github.com/rohitsingh2901/kanbanboard/assets/80673974/8cc4d9ca-22b7-440d-99e3-4c05fc147ae9" width="400">
+
+<!-- Screenshot (13) -->
+<img src="https://github.com/rohitsingh2901/kanbanboard/assets/80673974/f526bc4e-2dd6-46e9-bf05-58f740add24d" width="400">
+
+
+
+---
+
+Happy task managing!
+
+Author: Rohit Singh
+
+Contact: singhrohitrrr@gmail.com
+
+Date: 30/08/203
