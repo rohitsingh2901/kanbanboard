@@ -50,7 +50,7 @@ Tasks are stored in a database to ensure data persistence and seamless retrieval
 
 You can explore a read-only view of the MongoDB Compass database containing the task information by using the following link:
 
-mongodb+srv://viewonly:GLcEuN9ixgz3bnUI@kanbanboard.2v3awwr.mongodb.net/
+```mongodb+srv://viewonly:GLcEuN9ixgz3bnUI@kanbanboard.2v3awwr.mongodb.net/```
 
 ## Screenshots
 
