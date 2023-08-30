@@ -7,6 +7,7 @@ const ToDo = ({setUpdateDoing, updateToDo }) => {
   const [utitle, setuTitle] = useState("");
   const [udescription, setuDescription] = useState("");
   const [i, seti] = useState(null);
+  const [di, setDi] = useState(null);
 
 
   useEffect   (() => {
@@ -25,11 +26,10 @@ const ToDo = ({setUpdateDoing, updateToDo }) => {
 
 
   
-  const deleteCard = async (index) => {
-    console.log(index)
+  const deleteCard = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/todo-cards/${Cards[index]._id}`,
+        `http://localhost:5000/todo-cards/${Cards[di]._id}`,
         {
           method: "DELETE",
         }
@@ -123,40 +123,63 @@ const ToDo = ({setUpdateDoing, updateToDo }) => {
 
   return (
     <>
-    <h1 className="text-center font-extrabold">To Do</h1>
+    <h1 className="text-center font-extrabold text-red-600">To Do</h1>
           {Cards.map((c, i) => (
             <div key={i} className="flex justify-center">
               <div
                 className="card text-black border-danger mb-3"
-                style={{ maxWidth: "22vw", minWidth: "22vw" }}
+                style={{ maxWidth: "22vw", minWidth: "22vw",background:"#F08080" }}
               >
                 <div className="card-header font-bold text-center">
                   {c.title}
                 </div>
-                <div className="card-body">
+                <div className="card-body ">
                   <p className="card-text">{c.description}</p>
                   <div className="flex justify-end">
                     <i
-                      onClick={() => deleteCard(i)}
+                      title="Delete Card"
+                      onClick={() => setDi(i)}
+                      data-toggle="modal" data-target="#exampleModalCenterDeleteCheck"
                       className="fa-solid fa-trash mx-2 cursor-pointer"
                     ></i>
-                    <i data-toggle="modal"
+                    <i title='Edit Card' data-toggle="modal"
             data-target="#exampleModalCenter2" onClick={()=>{seti(i) 
             setuTitle(Cards[i].title)
             setuDescription(Cards[i].description)}} className="fa-solid fa-pen-to-square mx-2 cursor-pointer"></i>
-                    <i onClick={()=>{moveCardToDoing(c._id)}} className="fa fa-arrow-right cursor-pointer"></i>
+                    <i title='Move to doing' onClick={()=>{moveCardToDoing(c._id)}} className="fa fa-arrow-right cursor-pointer"></i>
                   </div>
                 </div>
               </div>
             </div>
           ))}
           <h6
+            title='Add new card'
             data-toggle="modal"
             data-target="#exampleModalCenter"
             className="cursor-pointer"
           >
             Create Card <i className="fa-solid fa-plus"></i>
           </h6>
+
+        
+
+
+<div class="modal fade" id="exampleModalCenterDeleteCheck" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title font-bold" id="exampleModalLongTitle">Are you sure you want to delete this card</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button onClick={deleteCard} type="button" data-dismiss="modal" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 
           <div
             className="modal fade"
@@ -168,9 +191,9 @@ const ToDo = ({setUpdateDoing, updateToDo }) => {
           >
             <div className="modal-dialog modal-dialog-centered" role="document">
             <form>
-              <div className="modal-content" style={{minWidth:"30rem"}}>
+              <div className="modal-content" style={{minWidth:"30rem",borderRadius:"30px" }}>
                 <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLongTitle">
+                  <h5 className="modal-title font-bold" id="exampleModalLongTitle">
                     Update Card
                   </h5>
                   <button
@@ -237,9 +260,9 @@ const ToDo = ({setUpdateDoing, updateToDo }) => {
           >
             <div className="modal-dialog modal-dialog-centered" role="document">
             <form>
-              <div className="modal-content" style={{minWidth:"30rem"}}>
+              <div className="modal-content" style={{minWidth:"30rem",borderRadius:"30px" }}>
                 <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLongTitle">
+                  <h5 className="modal-title font-bold" id="exampleModalLongTitle">
                     Add Card in To Do list
                   </h5>
                   <button

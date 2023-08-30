@@ -9,7 +9,7 @@ const Home = () => {
   const [updateDone, setUpdateDone] = useState(false);
 
   return (
-    <div className="">
+    <div id="home" className="my-12">
       <div className="flex justify-evenly">
         <div className="col-3 border-solid border-2 border-black">
           <ToDo setUpdateDoing={setUpdateDoing} updateToDo={updateToDo} />
