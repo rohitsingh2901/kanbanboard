@@ -30,6 +30,7 @@ const Doing = ({updateDoing, setUpdateToDo, setUpdateDone}) => {
   }, []);
 
   const fetchCards = async () => {
+    setCheck(false)
     try {
       const response = await fetch("https://freezing-selective-monitor.glitch.me/doing-cards");
       const data = await response.json();
