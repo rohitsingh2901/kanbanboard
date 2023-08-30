@@ -17,8 +17,9 @@ const ToDo = ({setUpdateDoing, updateToDo }) => {
   }, [updateToDo]);
 
   const fetchCards = async () => {
+    setCheck(false)
     try {
-      const response = await fetch("http://localhost:5000/todo-cards");
+      const response = await fetch("https://freezing-selective-monitor.glitch.me/todo-cards");
       const data = await response.json();
       setCheck(true);
       setCards(data);
@@ -32,7 +33,7 @@ const ToDo = ({setUpdateDoing, updateToDo }) => {
   const deleteCard = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/todo-cards/${Cards[di]._id}`,
+        `https://freezing-selective-monitor.glitch.me/todo-cards/${Cards[di]._id}`,
         {
           method: "DELETE",
         }
@@ -49,7 +50,7 @@ const ToDo = ({setUpdateDoing, updateToDo }) => {
   const editCard = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/todocards/edit/${Cards[i]._id}`,
+        `https://freezing-selective-monitor.glitch.me/todocards/edit/${Cards[i]._id}`,
         {
           method: "PUT",
           headers: {
@@ -85,7 +86,7 @@ const ToDo = ({setUpdateDoing, updateToDo }) => {
     if(title!=="" && description!==""){
     event.preventDefault()
     try {
-      const response = await fetch('http://localhost:5000/create-todocard', {
+      const response = await fetch('https://freezing-selective-monitor.glitch.me/create-todocard', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -107,7 +108,7 @@ const ToDo = ({setUpdateDoing, updateToDo }) => {
 
   const moveCardToDoing = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/move-to-doing/${id}`, {
+      const response = await fetch(`https://freezing-selective-monitor.glitch.me/move-to-doing/${id}`, {
         method: 'PUT',
       });
   

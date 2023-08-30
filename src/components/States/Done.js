@@ -28,7 +28,7 @@ const Done = ({updateDone, setUpdateDoing}) => {
   }, []);
   const fetchCards = async () => {
     try {
-      const response = await fetch("http://localhost:5000/done-cards");
+      const response = await fetch("https://freezing-selective-monitor.glitch.me/done-cards");
       const data = await response.json();
       setCheck(true)
       setCards(data);
@@ -42,7 +42,7 @@ const Done = ({updateDone, setUpdateDoing}) => {
   const deleteCard = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/done-cards/${Cards[di]._id}`,
+        `https://freezing-selective-monitor.glitch.me/done-cards/${Cards[di]._id}`,
         {
           method: "DELETE",
         }
@@ -59,7 +59,7 @@ const Done = ({updateDone, setUpdateDoing}) => {
   const editCard = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/donecards/edit/${Cards[i]._id}`,
+        `https://freezing-selective-monitor.glitch.me/donecards/edit/${Cards[i]._id}`,
         {
           method: "PUT",
           headers: {
@@ -95,7 +95,7 @@ const Done = ({updateDone, setUpdateDoing}) => {
     if(title!=="" && description!==""){
     event.preventDefault()
     try {
-      const response = await fetch('http://localhost:5000/create-donecard', {
+      const response = await fetch('https://freezing-selective-monitor.glitch.me/create-donecard', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ const Done = ({updateDone, setUpdateDoing}) => {
   const moveCardToDoing = async (id) => {
     console.log(id)
     try {
-      const response = await fetch(`http://localhost:5000/move-to-doing-from-done/${id}`, {
+      const response = await fetch(`https://freezing-selective-monitor.glitch.me/move-to-doing-from-done/${id}`, {
         method: 'PUT',
       });
   

@@ -91,9 +91,6 @@ html{
     justify-content: space-evenly;
   }
   .column{
-    display:  flex;
-    flex-direction: column;
-    justify-content: space-evenly;
     width: 30vw;
   }
 }
@@ -105,9 +102,6 @@ html{
     align-items: center;
   }
   .column{
-    display:  flex;
-    flex-direction: column;
-    justify-content: space-evenly;
     width: 90vw;
   }
 }

@@ -31,7 +31,7 @@ const Doing = ({updateDoing, setUpdateToDo, setUpdateDone}) => {
 
   const fetchCards = async () => {
     try {
-      const response = await fetch("http://localhost:5000/doing-cards");
+      const response = await fetch("https://freezing-selective-monitor.glitch.me/doing-cards");
       const data = await response.json();
       setCheck(true)
       setCards(data);
@@ -43,7 +43,7 @@ const Doing = ({updateDoing, setUpdateToDo, setUpdateDone}) => {
   const deleteCard = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/doing-cards/${Cards[di]._id}`,
+        `https://freezing-selective-monitor.glitch.me/doing-cards/${Cards[di]._id}`,
         {
           method: "DELETE",
         }
@@ -60,7 +60,7 @@ const Doing = ({updateDoing, setUpdateToDo, setUpdateDone}) => {
   const editCard = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/doingcards/edit/${Cards[i]._id}`,
+        `https://freezing-selective-monitor.glitch.me/doingcards/edit/${Cards[i]._id}`,
         {
           method: "PUT",
           headers: {
@@ -96,7 +96,7 @@ const Doing = ({updateDoing, setUpdateToDo, setUpdateDone}) => {
     if(title!=="" && description!==""){
     event.preventDefault()
     try {
-      const response = await fetch('http://localhost:5000/create-doingcard', {
+      const response = await fetch('https://freezing-selective-monitor.glitch.me/create-doingcard', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ const Doing = ({updateDoing, setUpdateToDo, setUpdateDone}) => {
 
   const moveCardToDo = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/move-to-todo/${id}`, {
+      const response = await fetch(`https://freezing-selective-monitor.glitch.me/move-to-todo/${id}`, {
         method: 'PUT',
       });
   
@@ -136,7 +136,7 @@ const Doing = ({updateDoing, setUpdateToDo, setUpdateDone}) => {
   };
   const moveCardToDone = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/move-to-done/${id}`, {
+      const response = await fetch(`https://freezing-selective-monitor.glitch.me/move-to-done/${id}`, {
         method: 'PUT',
       });
   
